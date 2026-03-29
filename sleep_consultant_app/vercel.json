@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "buildCommand": "echo 'Static site' && ls -la",
+  "devCommand": "python3 -m http.server 8000",
+  "installCommand": "echo 'No dependencies'",
+  "framework": null,
+  "regions": ["all"],
+  "routes": [
+    { "src": "/(.*)", "dest": "/$1" }
+  ],
+  "static": {
+    "public": "./",
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/index.html" }
+    ]
+  }
+}

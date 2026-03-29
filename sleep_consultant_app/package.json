@@ -1,0 +1,24 @@
+{
+  "name": "sleep-consultant-miniprogram",
+  "version": "1.0.0",
+  "description": "助眠师微信小程序界面原型",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "build": "mkdir -p dist && cp -r index.html style.css script.js vercel.json server.crt server.key dist/",
+    "start": "python3 -m http.server 8000",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "sleep",
+    "meditation",
+    "wechat-miniprogram",
+    "health"
+  ],
+  "author": "张小明",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/sleep-consultant-miniprogram"
+  }
+}

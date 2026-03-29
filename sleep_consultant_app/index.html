@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>助眠师 - 睡眠改善专家</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 主容器 -->
+    <div id="app">
+        <!-- 首页 -->
+        <div id="home" class="page active">
+            <!-- 顶部导航 -->
+            <header class="header">
+                <div class="header-content">
+                    <h1 class="app-title">🌙 助眠师</h1>
+                    <button class="profile-btn" onclick="goToProfile()">👤</button>
+                </div>
+            </header>
+
+            <!-- 问候区域 -->
+            <section class="greeting-section">
+                <h2 class="greeting-text">晚上好，张小明</h2>
+                <p class="greeting-subtext">今天想尝试哪种助眠方式？</p>
+            </section>
+
+            <!-- 快速功能入口 -->
+            <section class="quick-actions">
+                <button class="action-btn" onclick="goToPlayer('sleep')">🌙 入眠</button>
+                <button class="action-btn" onclick="goToPlayer('relax')">💤 放松</button>
+                <button class="action-btn" onclick="goToPlayer('nap')">😴 午睡</button>
+            </section>
+
+            <!-- 推荐轮播 -->
+            <section class="carousel-section">
+                <h3 class="section-title">🎵 今日推荐</h3>
+                <div class="carousel">
+                    <div class="carousel-item active">
+                        <div class="audio-card">
+                            <div class="audio-cover">
+                                <img src="https://picsum.photos/400/300?random=1" alt="海浪与雨声">
+                            </div>
+                            <h4 class="audio-title">🌊 海浪与雨声的完美结合</h4>
+                            <p class="audio-desc">30分钟 · 帮助深度放松</p>
+                            <button class="play-btn" onclick="goToPlayer('wave')">▶ 开始播放</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 热门分类 -->
+            <section class="category-section">
+                <h3 class="section-title">🔥 热门分类</h3>
+                <div class="category-grid">
+                    <div class="category-card" onclick="goToCategory('white-noise')">
+                        <span class="category-icon">🔊</span>
+                        <span class="category-name">白噪音</span>
+                    </div>
+                    <div class="category-card" onclick="goToCategory('meditation')">
+                        <span class="category-icon">🧘</span>
+                        <span class="category-name">冥想</span>
+                    </div>
+                    <div class="category-card" onclick="goToCategory('nature')">
+                        <span class="category-icon">🌲</span>
+                        <span class="category-name">自然声</span>
+                    </div>
+                    <div class="category-card" onclick="goToCategory('classical')">
+                        <span class="category-icon">🎵</span>
+                        <span class="category-name">古典乐</span>
+                    </div>
+                    <div class="category-card" onclick="goToCategory('sleep')">
+                        <span class="category-icon">😴</span>
+                        <span class="category-name">睡眠</span>
+                    </div>
+                    <div class="category-card" onclick="goToCategory('breathing')">
+                        <span class="category-icon">🌬️</span>
+                        <span class="category-name">呼吸法</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 专家推荐 -->
+            <section class="expert-section">
+                <h3 class="section-title">💡 睡眠建议</h3>
+                <div class="expert-card">
+                    <blockquote class="expert-quote">
+                        "建立规律的睡眠时间表，每天在同一时间上床和起床"
+                    </blockquote>
+                    <cite class="expert-name">—— 李医生，睡眠专家</cite>
+                </div>
+            </section>
+        </div>
+
+        <!-- 播放页 -->
+        <div id="player" class="page">
+            <!-- 顶部控制 -->
+            <div class="player-header">
+                <button class="back-btn" onclick="goToHome()">←</button>
+                <h2 class="audio-title">🌊 海浪与雨声</h2>
+                <button class="more-btn">⋮</button>
+            </div>
+
+            <!-- 专辑封面 -->
+            <div class="album-cover-container">
+                <div class="album-cover">
+                    <img src="https://picsum.photos/400/300?random=1" alt="海浪与雨声">
+                </div>
+            </div>
+
+            <!-- 进度条 -->
+            <div class="progress-section">
+                <div class="progress-timeline">
+                    <span class="progress-time">0:00</span>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 30%;"></div>
+                    </div>
+                    <span class="progress-time">30:00</span>
+                </div>
+            </div>
+
+            <!-- 播放控制 -->
+            <div class="playback-controls">
+                <button class="control-btn prev-btn">⏮️</button>
+                <button class="control-btn play-pause-btn">⏸️</button>
+                <button class="control-btn next-btn">⏭️</button>
+                <button class="control-btn repeat-btn">🔁</button>
+            </div>
+
+            <!-- 音量控制 -->
+            <div class="volume-control">
+                <label for="volume">🔊 音量</label>
+                <input type="range" id="volume" min="0" max="100" value="70">
+            </div>
+
+            <!-- 定时设置 -->
+            <div class="timer-control">
+                <label for="timer">⏰ 定时</label>
+                <select id="timer">
+                    <option value="5">5分钟</option>
+                    <option value="10" selected>10分钟</option>
+                    <option value="30">30分钟</option>
+                    <option value="60">60分钟</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- 分类页 -->
+        <div id="category" class="page">
+            <div class="category-header">
+                <button class="back-btn" onclick="goToHome()">←</button>
+                <h2 class="page-title">音频分类</h2>
+            </div>
+
+            <!-- 搜索框 -->
+            <div class="search-box">
+                <input type="text" placeholder="搜索音频...">
+                <button class="search-btn">🔍</button>
+            </div>
+
+            <!-- 分类导航 -->
+            <nav class="category-nav">
+                <button class="nav-item active">白噪音</button>
+                <button class="nav-item">自然声音</button>
+                <button class="nav-item">冥想</button>
+                <button class="nav-item">古典乐</button>
+                <button class="nav-item">睡眠音乐</button>
+            </nav>
+
+            <!-- 分类内容 -->
+            <div class="category-content">
+                <div class="audio-list">
+                    <div class="audio-item">
+                        <div class="item-cover">
+                            <img src="https://picsum.photos/200/150?random=2" alt="风吹树叶声">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-title">🌬️ 风吹树叶声</h4>
+                            <p class="item-desc">10分钟 · 4.5分</p>
+                        </div>
+                        <button class="play-btn">▶</button>
+                    </div>
+                    
+                    <div class="audio-item">
+                        <div class="item-cover">
+                            <img src="https://picsum.photos/200/150?random=3" alt="轻柔雨声">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-title">🌧️ 轻柔雨声</h4>
+                            <p class="item-desc">15分钟 · 4.7分</p>
+                        </div>
+                        <button class="play-btn">▶</button>
+                    </div>
+                    
+                    <div class="audio-item">
+                        <div class="item-cover">
+                            <img src="https://picsum.photos/200/150?random=4" alt="海浪白噪音">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-title">🌊 海浪白噪音</h4>
+                            <p class="item-desc">20分钟 · 4.9分</p>
+                        </div>
+                        <button class="play-btn">▶</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 个人中心 -->
+        <div id="profile" class="page">
+            <div class="profile-header">
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <img src="https://picsum.photos/100/100?random=10" alt="用户头像">
+                    </div>
+                    <h2 class="user-name">张小明</h2>
+                    <p class="user-stats">睡眠天数: 15天 · 累计播放: 45小时 · 完成冥想: 20次</p>
+                </div>
+            </div>
+
+            <!-- 我的收藏 -->
+            <section class="collection-section">
+                <h3 class="section-title">⭐ 我的收藏</h3>
+                <div class="collection-list">
+                    <div class="collection-item">
+                        <div class="item-cover">
+                            <img src="https://picsum.photos/200/150?random=1" alt="海浪与雨声">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-title">🌊 海浪与雨声</h4>
+                            <p class="item-desc">30分钟</p>
+                        </div>
+                        <button class="play-btn">▶</button>
+                    </div>
+                    
+                    <div class="collection-item">
+                        <div class="item-cover">
+                            <img src="https://picsum.photos/200/150?random=5" alt="森林冥想">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-title">🍃 森林冥想</h4>
+                            <p class="item-desc">20分钟</p>
+                        </div>
+                        <button class="play-btn">▶</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 睡眠记录 -->
+            <section class="sleep-record-section">
+                <h3 class="section-title">📊 睡眠记录</h3>
+                <div class="sleep-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">12分钟</span>
+                        <span class="stat-label">平均入睡时间</span>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <span class="stat-value">7.2小时</span>
+                        <span class="stat-label">平均睡眠时长</span>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <span class="stat-value">28%</span>
+                        <span class="stat-label">深度睡眠比例</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 设置 -->
+            <section class="settings-section">
+                <h3 class="section-title">⚙️ 设置</h3>
+                <div class="settings-list">
+                    <button class="setting-item">🔊 音量设置</button>
+                    <button class="setting-item">📱 定时播放</button>
+                    <button class="setting-item">📞 联系我们</button>
+                    <button class="setting-item">❓ 帮助中心</button>
+                    <button class="setting-item">🏃 关于我们</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
